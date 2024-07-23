@@ -1,0 +1,90 @@
+VCC Web App
+This project is a basic web application that serves a static HTML page using Python's built-in HTTP server. The application is containerized using Docker, allowing for easy deployment and consistent behavior across different environments.
+
+Application Features
+Static Web Page: Displays a simple HTML page styled with CSS.
+Python HTTP Server: Utilizes Python's http.server module to serve content.
+Docker Containerization: Encapsulates the application within a Docker container for easy deployment and portability.
+Table of Contents
+Application Features
+Prerequisites
+Deployment Instructions
+How it Works
+Author
+Repository
+Prerequisites
+Before deploying the application, ensure you have the following installed on your machine:
+
+Docker (latest version)
+Git (optional, for cloning the repository)
+Deployment Instructions
+Follow these steps to build and run the application using Docker:
+
+1. Clone the Repository
+First, clone the repository from GitHub to your local machine:
+
+bash
+Copy code
+git clone <repository-url>
+cd simple-web-app
+Replace <repository-url> with the actual URL of your GitHub repository.
+
+2. Build the Docker Image
+Build the Docker image for the application using the following command:
+
+bash
+Copy code
+docker build -t simple-web-app .
+-t simple-web-app: Tags the image with the name simple-web-app.
+.: Specifies the current directory as the build context, where Docker will look for the Dockerfile.
+3. Run the Docker Container
+Run the Docker container to start the web server:
+
+bash
+Copy code
+docker run -p 8000:8000 simple-web-app
+-p 8000:8000: Maps port 8000 of the host machine to port 8000 of the container, allowing access to the application via http://localhost:8000.
+4. Access the Web Application
+Open a web browser and navigate to:
+
+arduino
+Copy code
+http://localhost:8000
+You should see the "Welcome to My Simple Web App!" page. The application is now running inside a Docker container.
+
+5. Stop the Docker Container
+To stop the running container, press Ctrl + C in the terminal where the container is running, or use the following command to stop it gracefully:
+
+bash
+Copy code
+docker ps          # Find the container ID
+docker stop <container-id>
+Replace <container-id> with the ID of the running container.
+
+How it Works
+The application consists of a simple HTML page (index.html) styled with CSS (style.css) and served by a Python HTTP server script (server.py). The Dockerfile contains instructions to package this setup into a Docker image.
+
+Here's a breakdown of the process:
+
+Dockerfile:
+
+Base Image: Uses python:3.10-slim as the base image.
+Working Directory: Sets /app as the working directory.
+Copy Files: Copies application files into the Docker image.
+Expose Port: Exposes port 8000 for the web server.
+Command: Runs server.py to start the HTTP server.
+Python HTTP Server:
+
+server.py uses Python's http.server to serve the index.html file.
+Handles requests and responds with static content.
+Docker Image & Container:
+
+The image encapsulates all application code and dependencies.
+The container runs the application in an isolated environment.
+Author
+Name: Dhanshree Hood
+Roll Number: G23AI2132
+Contact: g23ai2132@iitj.ac.in
+Repository
+GitHub Repository Link: VCC Web App
+Replace <repository-url> with the URL to your GitHub repository where this project is hosted.
