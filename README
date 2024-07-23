@@ -1,4 +1,10 @@
 VCC Web App
+
+Author: 
+Name: Dhanshree Hood
+Roll Number: G23AI2132
+Contact: g23ai2132@iitj.ac.in
+
 This project is a basic web application that serves a static HTML page using Python's built-in HTTP server. The application is containerized using Docker, allowing for easy deployment and consistent behavior across different environments.
 
 Application Features
@@ -20,11 +26,121 @@ Git (optional, for cloning the repository)
 Deployment Instructions
 Follow these steps to build and run the application using Docker:
 
+Step 1: Setting Up the Web Application
+We'll create a simple web application that serves a static HTML page. We'll use Python's built-in HTTP server for this purpose.
+
+1.1 Create a New Project Folder
+Open Visual Studio Code (VS Code).
+Click on File > Open Folder, create a new folder named simple-web-app, and open it in VS Code.
+1.2 Create the Web Application Files
+Create the following files in your simple-web-app folder:
+
+File Structure:
+
+simple-web-app/
+├── index.html
+├── style.css
+├── server.py
+└── Dockerfile
+index.html:
+
+2.1 Create Dockerfile
+Create a new file named Dockerfile in the simple-web-app folder and add the following content:
+
+dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . .
+
+# Expose port 8000 for the HTTP server
+EXPOSE 8000
+
+# Run server.py when the container launches
+CMD ["python", "server.py"]
+Step 3: Build the Docker Image
+Now that we have a Dockerfile, we can build the Docker image for our application.
+
+3.1 Open the Terminal in VS Code
+In VS Code, open the terminal by clicking Terminal > New Terminal.
+
+Make sure you're in the simple-web-app directory in the terminal.
+
+3.2 Build the Docker Image
+Run the following command to build the Docker image:
+
+bash-
+docker build -t simple-web-app .
+-t simple-web-app tags the image with the name simple-web-app.
+. specifies the current directory as the build context.
+The build process will read the Dockerfile, execute the specified instructions, and create a Docker image.
+
+3.3 Verify the Docker Image
+Once the build is complete, verify that the image was created successfully by running:
+
+bash-
+docker images
+You should see simple-web-app listed among the images.
+
+Step 4: Run the Docker Container
+With the Docker image built, we can now run it to start the web server.
+
+4.1 Run the Container
+Execute the following command to run your Docker container:
+
+bash-
+docker run -p 8000:8000 simple-web-app
+-p 8000:8000 maps port 8000 of your host machine to port 8000 of the container, allowing you to access the application via http://localhost:8000.
+4.2 Access the Web Application
+Open a web browser and navigate to http://localhost:8000. You should see the "Welcome to My Simple Web App!" message.
+
+Step 5: Create a README File
+To document the process and describe the application, we'll create a README file.
+
+5.1 Create README.md
+In the simple-web-app directory, create a new file named README.md and add the following content:
+
+# VCC Web App
+
+This is a basic web application that serves a static HTML page using Python's built-in HTTP server. The application is containerized using Docker.
+
+## Application Features
+
+- Serves a static HTML page with CSS styling.
+- Runs on Python's HTTP server.
+
+## Deployment Instructions
+
+### Prerequisites
+
+- Docker installed on your machine
+
+### Steps to Deploy
+
+1. **Clone the Repository:**
+   ```bash
+   git clone <repository-url>
+   cd simple-web-app
+Build the Docker Image:
+
+bash-
+docker build -t simple-web-app .
+Run the Docker Container:
+
+bash-
+docker run -p 8000:8000 simple-web-app
+Access the Application:
+
+Open a web browser and go to http://localhost:8000 to see the application in action.
+
 1. Clone the Repository
 First, clone the repository from GitHub to your local machine:
 
-bash
-Copy code
+bash-
 git clone <repository-url>
 cd simple-web-app
 Replace <repository-url> with the actual URL of your GitHub repository.
@@ -32,31 +148,26 @@ Replace <repository-url> with the actual URL of your GitHub repository.
 2. Build the Docker Image
 Build the Docker image for the application using the following command:
 
-bash
-Copy code
+bash-
 docker build -t simple-web-app .
 -t simple-web-app: Tags the image with the name simple-web-app.
 .: Specifies the current directory as the build context, where Docker will look for the Dockerfile.
 3. Run the Docker Container
 Run the Docker container to start the web server:
 
-bash
-Copy code
+bash-
 docker run -p 8000:8000 simple-web-app
 -p 8000:8000: Maps port 8000 of the host machine to port 8000 of the container, allowing access to the application via http://localhost:8000.
+
 4. Access the Web Application
 Open a web browser and navigate to:
-
-arduino
-Copy code
 http://localhost:8000
 You should see the "Welcome to My Simple Web App!" page. The application is now running inside a Docker container.
 
 5. Stop the Docker Container
 To stop the running container, press Ctrl + C in the terminal where the container is running, or use the following command to stop it gracefully:
 
-bash
-Copy code
+bash-
 docker ps          # Find the container ID
 docker stop <container-id>
 Replace <container-id> with the ID of the running container.
@@ -81,10 +192,7 @@ Docker Image & Container:
 
 The image encapsulates all application code and dependencies.
 The container runs the application in an isolated environment.
-Author
-Name: Dhanshree Hood
-Roll Number: G23AI2132
-Contact: g23ai2132@iitj.ac.in
+
 Repository
 GitHub Repository Link: VCC Web App
 Replace <repository-url> with the URL to your GitHub repository where this project is hosted.
